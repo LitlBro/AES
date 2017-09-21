@@ -1,0 +1,22 @@
+<div class="box">
+    <h2>Réversibilité</h2>
+    <p>
+		L'AES étant symétrique, la même clé est utilisée pour le déchiffrement. Les mêmes Round Key (clé par itération) sont donc utilisées.<br/>
+		La différence va résider dans la création des clés, en effet, il y a deux manières de faire : <br/>
+    </p>
+    <ul>
+		
+		<li>
+			Toutes les créer avant le chiffrement, ce qui peut prendre du temps (selon la taille de la clé)
+		</li>
+		
+		<li>
+			Les créer au fur et à mesure des itérations
+		</li>
+		
+    </ul>
+    <p>
+		Or, dans le cas du déchiffrement, on commence par utiliser la clé de la derniére itération.<br/>
+		En effet, on déchiffre dans l'ordre des couches, or la dernière itération utilisant la dernière clé, on est obligé de créer toutes les clés avant de pouvoir déchiffrer.<br/>
+    </p>
+</div>

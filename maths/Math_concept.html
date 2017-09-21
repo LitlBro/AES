@@ -1,0 +1,82 @@
+<div class="box">
+    <h2>Modulo et congruences</h2>
+		<p>
+			L'opération modulo retourne le reste d'une division entière.<br>
+			ex : 12 % 5 = 2 (% est le symbole de l'opération modulo)<br>
+			<br>
+			<math xmlns="http://www.w3.org/1998/Math/MathML"><mtable columnalign="left"><mtr><mtd><mi>D</mi><mi>a</mi><mi>n</mi><mi>s</mi><mo>&#xA0;</mo><mi mathvariant="normal">&#x2124;</mi><mo>,</mo></mtd></mtr><mtr><mtd><mi>A</mi><mo>&#x2261;</mo><mi>B</mi><mo>&#xA0;</mo><mi>m</mi><mi>o</mi><mi>d</mi><mo>&#xA0;</mo><mi>P</mi><mo>&#x21D4;</mo><mi>A</mi><mo>=</mo><mi>B</mi><mo>+</mo><mi>k</mi><mo>&#xB7;</mo><mi>P</mi><mo>;</mo><mo>&#xA0;</mo><mi>k</mi><mo>&#x2208;</mo><mi mathvariant="normal">&#x2124;</mi></mtd></mtr></mtable></math><br/>
+			Cela se lit : A congru à B modulo P.<br/>
+			Soit, que A et B sont équivalents, à de multiples soustractions ou additions de P près.<br/><br/>
+			Ainsi on peut définir : <br/>
+		</p>
+		<ul>
+			<li>
+				12 congru à 5 modulo 7 : <math xmlns="http://www.w3.org/1998/Math/MathML"><mn>12</mn><mo>&#x2261;</mo><mn>5</mn><mo>&#xA0;</mo><mi>m</mi><mi>o</mi><mi>d</mi><mo>&#xA0;</mo><mn>7</mn><mo>&#x21D4;</mo><mn>12</mn><mo>+</mo><mo>(</mo><mo>-</mo><mn>1</mn><mo>)</mo><mo>*</mo><mn>7</mn></math><br/>
+			</li>
+			<li>
+				12 congru à 33 modulo 7 : <math xmlns="http://www.w3.org/1998/Math/MathML"><mn>12</mn><mo>&#x2261;</mo><mn>33</mn><mo>&#xA0;</mo><mi>m</mi><mi>o</mi><mi>d</mi><mo>&#xA0;</mo><mn>7</mn><mo>&#x21D4;</mo><mn>12</mn><mo>+</mo><mo>(</mo><mn>3</mn><mo>)</mo><mo>*</mo><mn>7</mn></math><br/>
+			</li>
+			<li>
+				12 congru à -2 modulo 7 : <math xmlns="http://www.w3.org/1998/Math/MathML"><mn>12</mn><mo>&#x2261;</mo><mo>-</mo><mn>2</mn><mo>&#xA0;</mo><mi>m</mi><mi>o</mi><mi>d</mi><mo>&#xA0;</mo><mn>7</mn><mo>&#x21D4;</mo><mn>12</mn><mo>+</mo><mo>(</mo><mo>-</mo><mn>2</mn><mo>)</mo><mo>*</mo><mn>7</mn></math><br/>
+			</li>
+		</ul>
+		<p>	
+			Dans la suite de ce cours, il faut garder à l'esprit que toutes les opérations de somme seront modulées par 2.<br/>
+			Ainsi, tous coefficients rencontrés sera égal a 0 ou 1.<br/>
+			De plus, dans ce cas, la somme et la différence sont équivalentes ( pour tout élément X et -X sont congrus à X modulo 2).<br/>
+			<br/>
+			Il est aussi possible de faire des congruences sur des polynômes<br/>
+			En effet, si les polynômes ont des coefficients entiers, alors la factorisation, soustraction, addition et division sont possibles.<br/>
+
+		</p>
+</div>
+
+
+<div class="box">
+	<h2>Les ensembles : Groupes</h2>
+	<p>
+		Un groupe G est un ensemble muni d'une opération binaire * telle que :<br>
+	</p>
+	<ul>
+		<li>L'opération * est une loi de composition interne. Cela signifie que :<br> 
+			<math xmlns="http://www.w3.org/1998/Math/MathML"><mo>&#x2200;</mo><mo>&#xA0;</mo><mi>&#x3B1;</mi><mo>,</mo><mi>&#x3B2;</mi><mo>&#xA0;</mo><mo>&#x2208;</mo><mi>G</mi><mo>&#xA0;</mo><mo>;</mo><mo>&#xA0;</mo><mi>&#x3B1;</mi><mo>&#xA0;</mo><mo>*</mo><mo>&#xA0;</mo><mi>&#x3B2;</mi><mo>&#xA0;</mo><mo>&#x2208;</mo><mo>&#xA0;</mo><mi>G</mi></math>				
+		</li>
+		<li>L'operation * est associative, soit : <br>
+			<math xmlns="http://www.w3.org/1998/Math/MathML"><mo>&#x2200;</mo><mo>&#xA0;</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>c</mi><mo>&#xA0;</mo><mo>&#x2208;</mo><mo>&#xA0;</mo><mi>G</mi><mo>&#xA0;</mo><mo>;</mo><mo>&#xA0;</mo><mi>a</mi><mo>*</mo><mfenced><mrow><mi>b</mi><mo>*</mo><mi>c</mi></mrow></mfenced><mo>&#xA0;</mo><mo>=</mo><mo>&#xA0;</mo><mfenced><mrow><mi>a</mi><mo>*</mo><mi>b</mi></mrow></mfenced><mo>*</mo><mi>c</mi></math> <br>	
+		</li>
+		<li>
+			L'opération * possède un élément neutre, soit : <br>
+			<math xmlns="http://www.w3.org/1998/Math/MathML"><mo>&#x2203;</mo><mo>&#xA0;</mo><mi>e</mi><mo>&#xA0;</mo><mo>&#x2208;</mo><mo>&#xA0;</mo><mi>G</mi><mo>,</mo><mo>&#xA0;</mo><mo>&#x2200;</mo><mo>&#xA0;</mo><mi>&#x3B1;</mi><mo>&#xA0;</mo><mo>&#x2208;</mo><mo>&#xA0;</mo><mi>G</mi><mo>;</mo><mo>&#xA0;</mo><mi>&#x3B1;</mi><mo>*</mo><mi>e</mi><mo>&#xA0;</mo><mo>=</mo><mo>&#xA0;</mo><mi>e</mi><mo>*</mo><mi>&#x3B1;</mi></math> <br>
+		</li>
+		<li>
+			L'opération * admet l'existence d'un élément inverse :<br>
+			<math xmlns="http://www.w3.org/1998/Math/MathML"><mo>&#x2200;</mo><mo>&#xA0;</mo><mi>&#x3B1;</mi><mo>&#xA0;</mo><mo>&#x2208;</mo><mo>&#xA0;</mo><mi>G</mi><mo>,</mo><mo>&#xA0;</mo><mo>&#x2203;</mo><mo>&#xA0;</mo><msup><mi>&#x3B1;</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup><mo>&#xA0;</mo><mo>;</mo><mo>&#xA0;</mo><mi>&#x3B1;</mi><mo>&#xA0;</mo><mo>*</mo><mo>&#xA0;</mo><msup><mi>&#x3B1;</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup><mo>&#xA0;</mo><mo>=</mo><mo>&#xA0;</mo><msup><mi>&#x3B1;</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup><mo>&#xA0;</mo><mo>*</mo><mo>&#xA0;</mo><mi>&#x3B1;</mi><mo>&#xA0;</mo><mo>=</mo><mo>&#xA0;</mo><mi>e</mi></math><br>
+		</li>
+		<li>
+			Si l'opération * est commutative, G est abélien : <br>
+			<math xmlns="http://www.w3.org/1998/Math/MathML"><mi>G</mi><mo>&#xA0;</mo><mi>a</mi><mi>b</mi><mi>&#xE9;</mi><mi>l</mi><mi>i</mi><mi>e</mi><mi>n</mi><mo>&#xA0;</mo><mo>&#x21D4;</mo><mo>&#x2200;</mo><mi>&#x3B1;</mi><mo>,</mo><mi>&#x3B2;</mi><mo>&#xA0;</mo><mo>&#x2208;</mo><mi>G</mi><mo>;</mo><mo>&#xA0;</mo><mo>&#xA0;</mo><mi>&#x3B1;</mi><mo>*</mo><mi>&#x3B2;</mi><mo>&#xA0;</mo><mo>=</mo><mo>&#xA0;</mo><mi>&#x3B2;</mi><mo>*</mo><mi>&#x3B1;</mi></math><br>
+		</li>
+	</ul>	
+	
+	<h2>Les ensembles : Corps</h2>
+	<p>
+		Un corps F est un ensemble tel que :<br>
+	</p>
+
+	<ul>
+		<li>Tout élément de F forme un groupe additif , avec 0 comme élément neutre pour l'opération +<br></li>
+		<li>Tout élément de F (sauf 0) forme un groupe multiplicatif, avec 1 comme élément neutre pour l'opération *<br></li>
+		<li>Quand les deux groupes sont joins, la loi de distributivité s'applique :<br>
+			<math xmlns="http://www.w3.org/1998/Math/MathML"><mo>&#x2200;</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>c</mi><mo>&#xA0;</mo><mo>&#x2208;</mo><mo>&#xA0;</mo><mi>F</mi><mo>;</mo><mo>&#xA0;</mo><mi>a</mi><mo>*</mo><mfenced><mrow><mi>b</mi><mo>+</mo><mi>c</mi></mrow></mfenced><mo>&#xA0;</mo><mo>=</mo><mo>&#xA0;</mo><mi>a</mi><mo>*</mo><mi>b</mi><mo>&#xA0;</mo><mo>+</mo><mo>&#xA0;</mo><mi>a</mi><mo>*</mo><mi>c</mi></math><br>
+		 </li>
+	</ul> 
+	
+	
+	<h2>Corps de Gallois</h2>
+	<p>
+		Un corps de Gallois GF(N) est un corps avec un nombre finis d'élément <br>
+		Pour l'AES, on utilise un corps premier. C'est à dire un corps de la forme : 
+		<math xmlns="http://www.w3.org/1998/Math/MathML"><mi>G</mi><mi>F</mi><mfenced><msup><mi>p</mi><mi>n</mi></msup></mfenced></math> avec p premier et
+		<math xmlns="http://www.w3.org/1998/Math/MathML"><mi>n</mi><mo>&#xA0;</mo><mo>&#x2208;</mo><mo>&#xA0;</mo><mi mathvariant="normal">&#x2115;</mi></math><br>
+	</p>
+</div>

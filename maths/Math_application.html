@@ -1,0 +1,78 @@
+<div class="box">
+    <h2>Représentation sous forme de polynômes</h2>
+		<p>
+			Tout nombre entier peut aisément être exprimé sous forme de puissance de 2, et ainsi être converti en binaire.<br>
+			En binaire, une suite de 8 bits est un octet.<br/>
+			Le bit le plus à droite d'un octet est appelé bit de poids faible. Il correspond à 2<sup>0</sup> = 1.<br>
+			Le bit le plus à gauche d'un octet est appelé bit de poids fort. Il correspond à 2<sup>7</sup> = 128.<br>
+			Dans le cadre de l'AES, on utilise GF(2<sup>8</sup>), soit une extension du corps de gallois GF(2<sup>1</sup>).<br><br>
+			
+		  Pour représenter ces éléments on utilise  des polynômes dont les coefficients sont compris dans GF(2) (soit {0 ; 1}).<br>
+		  On peut donc représenter tout ces polynômes tels que : <br>
+			<math xmlns="http://www.w3.org/1998/Math/MathML"><mtable><mtr><mtd><mi>A</mi><mo>&#x2208;</mo><mi>G</mi><mo>(</mo><msup><mn>2</mn><mn>8</mn></msup><mo>)</mo><mo>;</mo></mtd><mtd><mi>A</mi><mo>=</mo><msub><mi>a</mi><mn>7</mn></msub><mo>&#xB7;</mo><msup><mi>X</mi><mn>7</mn></msup><mo>+</mo><msub><mi>a</mi><mn>6</mn></msub><mo>&#xB7;</mo><msup><mi>X</mi><mn>6</mn></msup><mo>+</mo><msub><mi>a</mi><mn>5</mn></msub><mo>&#xB7;</mo><msup><mi>X</mi><mn>5</mn></msup><mo>+</mo><msub><mi>a</mi><mn>4</mn></msub><mo>&#xB7;</mo><msup><mi>X</mi><mn>4</mn></msup><mo>+</mo><msub><mi>a</mi><mn>3</mn></msub><mo>&#xB7;</mo><msup><mi>X</mi><mn>3</mn></msup><mo>+</mo><msub><mi>a</mi><mn>2</mn></msub><mo>&#xB7;</mo><msup><mi>X</mi><mn>2</mn></msup><mo>+</mo><msub><mi>a</mi><mn>1</mn></msub><mo>&#xB7;</mo><msup><mi>X</mi><mn>1</mn></msup><mo>+</mo><msub><mi>a</mi><mn>0</mn></msub><mo>&#xB7;</mo><msup><mi>X</mi><mn>0</mn></msup></mtd></mtr></mtable></math><br/>
+			avec 
+			<math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>a</mi><mi>i</mi></msub><mo>&#x2208;</mo><mo>{</mo><mn>0</mn><mo>;</mo><mn>1</mn><mo>}</mo></math><br/>
+			Les opérations usuelles étant possibles avec des polynômes, GF(2<sup>8</sup>) représente l'ensemble des polynômes de degré inférieur ou égal à 7 (et de coefficients < 2).<br/>
+			Pour la compréhension future des applications, il faut bien différencier les polynômes de leur signification.<br/>
+			Pour l'AES, les polynômes sont issus de la conversion en binaire du texte clair.<br/>
+			Cela ne correspond donc pas à une valeur de l'ensemble des entiers naturels. Il faut rester dans GF(2<sup>8</sup>), donc rester sous forme polynômiale.
+		</p>
+</div>
+
+<div class="box">
+	<h2>Calculs polynômiaux :  Somme</h2>
+	<p>
+		La somme se fait par puissance : <br>
+		<math xmlns="http://www.w3.org/1998/Math/MathML"><mi>A</mi><mo>+</mo><mi>B</mi><mo>&#xA0;</mo><mo>=</mo><mo>&#xA0;</mo><mo>(</mo><msub><mi>a</mi><mn>7</mn></msub><mo>+</mo><msub><mi>b</mi><mn>7</mn></msub><mo>)</mo><mo>*</mo><msup><mi>X</mi><mn>7</mn></msup><mo>+</mo><mo>(</mo><msub><mi>a</mi><mn>6</mn></msub><mo>+</mo><msub><mi>b</mi><mn>6</mn></msub><mo>)</mo><mo>*</mo><msup><mi>X</mi><mn>6</mn></msup><mo>+</mo><mo>(</mo><msub><mi>a</mi><mn>5</mn></msub><mo>+</mo><msub><mi>b</mi><mn>5</mn></msub><mo>)</mo><mo>*</mo><msup><mi>X</mi><mn>5</mn></msup><mo>+</mo><mo>(</mo><msub><mi>a</mi><mn>4</mn></msub><mo>+</mo><msub><mi>b</mi><mn>4</mn></msub><mo>)</mo><mo>*</mo><msup><mi>X</mi><mn>4</mn></msup><mo>+</mo><mo>(</mo><msub><mi>a</mi><mn>3</mn></msub><mo>+</mo><msub><mi>b</mi><mn>3</mn></msub><mo>)</mo><mo>*</mo><msup><mi>X</mi><mn>3</mn></msup><mo>+</mo><mo>(</mo><msub><mi>a</mi><mn>2</mn></msub><mo>+</mo><msub><mi>b</mi><mn>2</mn></msub><mo>)</mo><mo>*</mo><msup><mi>X</mi><mn>2</mn></msup><mo>+</mo><mo>(</mo><msub><mi>a</mi><mn>1</mn></msub><mo>+</mo><msub><mi>b</mi><mn>1</mn></msub><mo>)</mo><mo>*</mo><mi>X</mi><mo>+</mo><mo>(</mo><msub><mi>a</mi><mn>0</mn></msub><mo>+</mo><msub><mi>b</mi><mn>0</mn></msub><mo>)</mo><mo>*</mo><mn>1</mn></math><br>
+
+		Comme les coefficients prennent leurs valeurs dans GF(2), la somme est modulée par 2.<br/>
+		Elle correspond alors à un "OU" exclusif.<br/>
+		En effet : 
+		<ul>
+			<li>
+				Si les coefficients valent tout les deux 0, alors leurs somme donnera 0. <br/>
+				<math xmlns="http://www.w3.org/1998/Math/MathML"><mn>0</mn><mo>&#x2261;</mo><mn>0</mn><mo>&#xA0;</mo><mi>m</mi><mi>o</mi><mi>d</mi><mo>&#xA0;</mo><mn>2</mn><mo>&#x21D4;</mo><mn>0</mn><mo>+</mo><mo>(</mo><mn>0</mn><mo>)</mo><mo>*</mo><mn>2</mn></math>
+			</li>
+			<li>
+				Dans le cas où ils sont tout les deux égaux à 1,  alors la somme congru à 0 modulo 2.<br>
+				<math xmlns="http://www.w3.org/1998/Math/MathML"><mn>2</mn><mo>&#x2261;</mo><mn>0</mn><mo>&#xA0;</mo><mi>m</mi><mi>o</mi><mi>d</mi><mo>&#xA0;</mo><mn>2</mn><mo>&#x21D4;</mo><mn>0</mn><mo>+</mo><mo>(</mo><mo>-</mo><mn>1</mn><mo>)</mo><mo>*</mo><mn>2</mn></math>
+			</li>
+			<li>
+				Dans le cas où les coefficients sont 0 et 1, alors la somme congru à 1 modulo 2.<br/>
+				<math xmlns="http://www.w3.org/1998/Math/MathML"><mn>1</mn><mo>&#x2261;</mo><mn>1</mn><mo>&#xA0;</mo><mi>m</mi><mi>o</mi><mi>d</mi><mo>&#xA0;</mo><mn>2</mn><mo>&#x21D4;</mo><mn>0</mn><mo>+</mo><mo>(</mo><mn>0</mn><mo>)</mo><mo>*</mo><mn>2</mn></math>
+			</li>
+		</ul>		
+	</p>
+	<p>
+			Ce qui correspond à la table de vérité du "OU exclusif".<br/>
+	</p>
+	<h2>Calculs polynômiaux :  Multiplication</h2>
+		<p>
+			Dans le cas de la multiplication, il est possible de dépasser 2<sup>7</sup>. Pour compenser cela, on module la multiplication par un polynôme :<br>
+			<math 
+			xmlns="http://www.w3.org/1998/Math/MathML"><mo>&#x2200;</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo>&#x2208;</mo><mi>G</mi><mo>(</mo><msup><mn>2</mn><mn>8</mn></msup><mo>)</mo><mo>;</mo><mo>&#xA0;</mo><mi>A</mi><mo>*</mo><mi>B</mi><mo>&#xA0;</mo><mo>=</mo><mo>&#xA0;</mo><mi>A</mi><mo>(</mo><mi>X</mi><mo>)</mo><mo>&#xD7;</mo><mi>B</mi><mo>(</mo><mi>X</mi><mo>)</mo><mo>&#xA0;</mo><mi>m</mi><mi>o</mi><mi>d</mi><mo>&#xA0;</mo><mi>P</mi><mo>(</mo><mi>X</mi><mo>)</mo></math><br>
+			Avec P(X) un polynôme irréductible (ici : qui ne peut pas être factorisé). Dans le cas de l'AES, ce polynôme fait partie du standard. il s'agit de :<br> 
+			<math xmlns="http://www.w3.org/1998/Math/MathML"><mi>P</mi><mo>(</mo><mi>X</mi><mo>)</mo><mo>=</mo><msup><mi>X</mi><mn>8</mn></msup><mo>+</mo><msup><mi>X</mi><mn>4</mn></msup><mo>+</mo><msup><mi>X</mi><mn>3</mn></msup><mo>+</mo><mi>X</mi><mo>+</mo><mn>1</mn></math><br>
+			<br/>
+			Exemple : <br/>
+			<math xmlns="http://www.w3.org/1998/Math/MathML"><mtable columnalign="center left"><mtr><mtd><mi>S</mi><mi>o</mi><mi>i</mi><mi>t</mi></mtd><mtd><mi>A</mi><mo>=</mo><msup><mi>X</mi><mn>5</mn></msup><mo>+</mo><msup><mi>X</mi><mn>4</mn></msup><mo>+</mo><mn>1</mn><mo>,</mo><mo>&#xA0;</mo><mi>B</mi><mo>=</mo><msup><mi>X</mi><mn>5</mn></msup><mo>+</mo><msup><mi>X</mi><mn>2</mn></msup><mo>+</mo><mi>X</mi></mtd></mtr><mtr><mtd><mi>d</mi><mi>o</mi><mi>n</mi><mi>c</mi></mtd><mtd><mi>A</mi><mo>&#xB7;</mo><mi>B</mi><mo>=</mo><mo stretchy="true">(</mo><msup><mi>X</mi><mn>5</mn></msup><mo>+</mo><msup><mi>X</mi><mn>4</mn></msup><mo>+</mo><mn>1</mn><mo>)</mo><mo>&#xB7;</mo><mo>(</mo><msup><mi>X</mi><mn>5</mn></msup><mo>+</mo><msup><mi>X</mi><mn>2</mn></msup><mo>+</mo><mi>X</mi><mo>)</mo></mtd></mtr><mtr><mtd><mi>d</mi><mi>o</mi><mi>n</mi><mi>c</mi></mtd><mtd><mi>A</mi><mo>&#xB7;</mo><mi>B</mi><mo>=</mo><msup><mi>X</mi><mn>10</mn></msup><mo>+</mo><msup><mi>X</mi><mn>9</mn></msup><mo>+</mo><msup><mi>X</mi><mn>7</mn></msup><mo>+</mo><msup><mi>X</mi><mn>6</mn></msup><mo>+</mo><msup><mi>X</mi><mn>6</mn></msup><mo>+</mo><msup><mi>X</mi><mn>5</mn></msup><mo>+</mo><msup><mi>X</mi><mn>5</mn></msup><mo>+</mo><msup><mi>X</mi><mn>2</mn></msup><mo>+</mo><mi>X</mi></mtd></mtr></mtable></math><br/>
+			<br/>
+			Les coefficients se trouvent dans GF(2), on applique donc tout d'abord l'opération "+" modulée par 2 (correspondand à un XOR) <br/>
+			<math xmlns="http://www.w3.org/1998/Math/MathML"><mtable columnalign="center left"><mtr><mtd><mi>A</mi><mi>i</mi><mi>n</mi><mi>s</mi><mi>i</mi><mo>&#xA0;</mo><mi>A</mi><mo>&#xB7;</mo><mi>B</mi></mtd><mtd><mo>=</mo><msup><mi>X</mi><mn>10</mn></msup><mo>+</mo><msup><mi>X</mi><mn>9</mn></msup><mo>+</mo><msup><mi>X</mi><mn>7</mn></msup><mo>+</mo><mo>(</mo><msup><mi>X</mi><mn>6</mn></msup><mo>+</mo><msup><mi>X</mi><mn>6</mn></msup><mo>)</mo><mo>+</mo><mo>(</mo><msup><mi>X</mi><mn>5</mn></msup><mo>+</mo><msup><mi>X</mi><mn>5</mn></msup><mo>)</mo><mo>+</mo><msup><mi>X</mi><mn>2</mn></msup><mo>+</mo><mi>X</mi></mtd></mtr><mtr><mtd/><mtd><mo>=</mo><msup><mi>X</mi><mn>10</mn></msup><mo>+</mo><msup><mi>X</mi><mn>9</mn></msup><mo>+</mo><msup><mi>X</mi><mn>7</mn></msup><mo>+</mo><msup><mi>X</mi><mn>2</mn></msup><mo>+</mo><mi>X</mi></mtd></mtr></mtable><mi></mi></math><br/>
+		</p>
+		<p>
+			Dans l'exemple, le polynôme a un degré supérieur à 7. Il faut donc utiliser le polynôme P(x) donné précédemment pour moduler.<br/>
+			Pour moduler ce résulat, il faut éléver P(x) a un degré égal au polynôme à réduire.<br/>
+			<math xmlns="http://www.w3.org/1998/Math/MathML"><mtable columnalign="left"><mtr><mtd><mi>A</mi><mi>i</mi><mi>n</mi><mi>s</mi><mi>i</mi><mo>,</mo><mo>&#xA0;</mo><mi>d</mi><mi>e</mi><mi>g</mi><mi>r</mi><mi>&#xE9;</mi><mo>(</mo><mi>A</mi><mo>&#xB7;</mo><mi>B</mi><mo>)</mo><mo>=</mo><mn>10</mn><mo>,</mo><mo>&#xA0;</mo><mi>d</mi><mi>e</mi><mi>g</mi><mi>r</mi><mi>&#xE9;</mi><mo>(</mo><mi>P</mi><mo>)</mo><mo>=</mo><mn>8</mn></mtd></mtr><mtr><mtd><mi>o</mi><mi>r</mi><mo>&#xA0;</mo><mn>10</mn><mo>-</mo><mn>8</mn><mo>=</mo><mn>2</mn></mtd></mtr><mtr><mtd><mi>A</mi><mi>i</mi><mi>n</mi><mi>s</mi><mi>i</mi><mo>,</mo><mo>&#xA0;</mo><mi>A</mi><mo>&#xB7;</mo><mi>B</mi><mo>&#x2261;</mo><mi>A</mi><mo>&#xB7;</mo><mi>B</mi><mo>+</mo><mi>P</mi><mo>&#xB7;</mo><msup><mi>X</mi><mn>2</mn></msup><mo>&#xA0;</mo><mi>m</mi><mi>o</mi><mi>d</mi><mo>&#xA0;</mo><mi>P</mi></mtd></mtr></mtable></math><br/>
+			<math xmlns="http://www.w3.org/1998/Math/MathML"><mtable columnalign="center left"><mtr><mtd><mi>O</mi><mi>r</mi><mo>&#xA0;</mo><mi>A</mi><mo>&#xB7;</mo><mi>B</mi><mo>+</mo><mi>P</mi><mo>&#xB7;</mo><msup><mi>X</mi><mn>2</mn></msup></mtd><mtd><mo>&#x2261;</mo><msup><mi>X</mi><mn>10</mn></msup><mo>+</mo><msup><mi>X</mi><mn>9</mn></msup><mo>+</mo><msup><mi>X</mi><mn>7</mn></msup><mo>+</mo><msup><mi>X</mi><mn>2</mn></msup><mo>+</mo><mi>X</mi><mo>+</mo><mo>(</mo><msup><mi>X</mi><mn>8</mn></msup><mo>+</mo><msup><mi>X</mi><mn>4</mn></msup><mo>+</mo><msup><mi>X</mi><mn>3</mn></msup><mo>+</mo><mi>X</mi><mo>+</mo><mn>1</mn><mo>)</mo><mo>&#xB7;</mo><msup><mi>X</mi><mn>2</mn></msup><mo>&#xA0;</mo><mi>m</mi><mi>o</mi><mi>d</mi><mo>&#xA0;</mo><mi>P</mi></mtd></mtr><mtr><mtd/><mtd><mo>&#x2261;</mo><msup><mi>X</mi><mn>10</mn></msup><mo>+</mo><msup><mi>X</mi><mn>10</mn></msup><mo>+</mo><msup><mi>X</mi><mn>9</mn></msup><mo>+</mo><msup><mi>X</mi><mn>7</mn></msup><mo>+</mo><msup><mi>X</mi><mn>6</mn></msup><mo>+</mo><msup><mi>X</mi><mn>5</mn></msup><mo>+</mo><msup><mi>X</mi><mn>3</mn></msup><mo>+</mo><msup><mi>X</mi><mn>2</mn></msup><mo>+</mo><msup><mi>X</mi><mn>2</mn></msup><mo>+</mo><mi>X</mi><mo>&#xA0;</mo><mi>m</mi><mi>o</mi><mi>d</mi><mo>&#xA0;</mo><mi>P</mi></mtd></mtr><mtr><mtd/><mtd><mo>&#x2261;</mo><msup><mi>X</mi><mn>9</mn></msup><mo>+</mo><msup><mi>X</mi><mn>7</mn></msup><mo>+</mo><msup><mi>X</mi><mn>6</mn></msup><mo>+</mo><msup><mi>X</mi><mn>5</mn></msup><mo>+</mo><msup><mi>X</mi><mn>3</mn></msup><mo>+</mo><mi>X</mi><mo>&#xA0;</mo><mi>m</mi><mi>o</mi><mi>d</mi><mo>&#xA0;</mo><mi>P</mi></mtd></mtr></mtable><mi></mi></math><br/>
+			<br/>
+			On peut voir que le degré du polynôme est toujours strictement supérieur à 7.<br/>
+			On répète donc l'opération.<br/>
+			<math xmlns="http://www.w3.org/1998/Math/MathML"><mtable columnalign="center left"><mtr><mtd><mi>O</mi><mi>r</mi><mo>&#xA0;</mo><mi>A</mi><mo>&#xB7;</mo><mi>B</mi><mo>+</mo><mi>P</mi><mo>&#xB7;</mo><mi>X</mi></mtd><mtd><mo>&#x2261;</mo><msup><mi>X</mi><mn>9</mn></msup><mo>+</mo><msup><mi>X</mi><mn>7</mn></msup><mo>+</mo><msup><mi>X</mi><mn>6</mn></msup><mo>+</mo><msup><mi>X</mi><mn>5</mn></msup><mo>+</mo><msup><mi>X</mi><mn>3</mn></msup><mo>+</mo><mi>X</mi><mo>+</mo><mo>(</mo><msup><mi>X</mi><mn>8</mn></msup><mo>+</mo><msup><mi>X</mi><mn>4</mn></msup><mo>+</mo><msup><mi>X</mi><mn>3</mn></msup><mo>+</mo><mi>X</mi><mo>+</mo><mn>1</mn><mo>)</mo><mo>&#xB7;</mo><mi>X</mi><mo>&#xA0;</mo><mi>m</mi><mi>o</mi><mi>d</mi><mo>&#xA0;</mo><mi>P</mi></mtd></mtr><mtr><mtd/><mtd><mo>&#x2261;</mo><msup><mi>X</mi><mn>9</mn></msup><mo>+</mo><msup><mi>X</mi><mn>9</mn></msup><mo>+</mo><msup><mi>X</mi><mn>7</mn></msup><mo>+</mo><msup><mi>X</mi><mn>6</mn></msup><mo>+</mo><msup><mi>X</mi><mn>5</mn></msup><mo>+</mo><msup><mi>X</mi><mn>5</mn></msup><mo>+</mo><msup><mi>X</mi><mn>4</mn></msup><mo>+</mo><msup><mi>X</mi><mn>3</mn></msup><mo>+</mo><msup><mi>X</mi><mn>2</mn></msup><mo>+</mo><mi>X</mi><mo>+</mo><mi>X</mi><mo>&#xA0;</mo><mi>m</mi><mi>o</mi><mi>d</mi><mo>&#xA0;</mo><mi>P</mi></mtd></mtr><mtr><mtd/><mtd><mo>&#x2261;</mo><msup><mi>X</mi><mn>7</mn></msup><mo>+</mo><msup><mi>X</mi><mn>6</mn></msup><mo>+</mo><msup><mi>X</mi><mn>4</mn></msup><mo>+</mo><msup><mi>X</mi><mn>3</mn></msup><mo>+</mo><msup><mi>X</mi><mn>2</mn></msup><mo>&#xA0;</mo><mi>m</mi><mi>o</mi><mi>d</mi><mo>&#xA0;</mo><mi>P</mi></mtd></mtr></mtable><mi></mi></math><br/>
+		</p>
+		<p>
+			Désormais, le résultat est d'un degré strictement inférieur à 8. Il est donc compris par construction (degré inférieur ou égal à 7 et coefficients inférieurs à 2) dans le corps de Gallois utiisé (GF(2<sup>8</sup>)).<br/>
+			Il est donc possible de le représenter sous sa forme binaire (sous la forme d'un octet), avec seulement ses coefficients : <br/>
+			<math xmlns="http://www.w3.org/1998/Math/MathML"><mi>R</mi><mo>=</mo><mo>(</mo><mn>1</mn><mo>&#xA0;</mo><mn>1</mn><mo>&#xA0;</mo><mn>0</mn><mo>&#xA0;</mo><mn>1</mn><mo>&#xA0;</mo><mn>1</mn><mo>&#xA0;</mo><mn>1</mn><mo>&#xA0;</mo><mn>0</mn><mo>&#xA0;</mo><mn>0</mn><msub><mo>)</mo><mn>2</mn></msub></math><br/>
+		</p>		
+</div>

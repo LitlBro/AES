@@ -1,0 +1,21 @@
+<div class="box">
+    <h2>Reversibilité de AddKey</h2>
+    <p>
+		Etant donné que l'AES est un algorithme symétrique, il faut que la même clé puisse le chiffrer et le déchiffrer.<br/>
+		<br/>
+		Dans le cas de AddKey, ceci est montré très simplement : <br/>
+		Lors du déchiffrement, le processus est pris à l'envers, toutes les modifications sont supprimées les unes après les autres.<br/>
+		L'ordre étant fixe, il est possible (quand on a la clé) de savoir quelle RoundKey a été utilisée pour chaque itération.<br/>
+		Il suffit pour cela de toutes les créer, puis de partir de la derniére et de remonter à la premiére.<br/>
+		<br/>
+		L'opération utilisée lors du chiffrement étant XOR, il est nécessaire de refaire un XOR, avec la même clé pour le déchiffrement.<br/>
+		Ainsi, la clé qui avait été ajoutée sera compensée par elle même : <br/><br/>
+		
+		<math xmlns="http://www.w3.org/1998/Math/MathML"><mfrac><mrow><mtable><mtr><mtd><mn>11101100</mn></mtd></mtr><mtr><mtd><mn>10011011</mn></mtd></mtr><mtr><mtd><mn>11101100</mn></mtd></mtr></mtable><mtable><mtr><mtd><mo>+</mo></mtd></mtr><mtr><mtd><mo>+</mo></mtd></mtr></mtable></mrow><mn>10011011</mn></mfrac></math><br/>
+		<br/>Ceci est possible car l'opération XOR est associative : <br/>
+		Avec K<sub>i</sub> la RoundKey courante, M<sub>i</sub> le mot courant et C<sub>i</sub> le résultat de l'opération XOR tel que<br/> 
+		<math xmlns="http://www.w3.org/1998/Math/MathML"><mtable columnalign="left left center"><mtr><mtd><mi>S</mi><mi>o</mi><mi>i</mi><mi>t</mi></mtd><mtd><msub><mi>C</mi><mi>i</mi></msub><mo>&#xA0;</mo><mo>=</mo><msub><mi>M</mi><mi>i</mi></msub><mo>+</mo><msub><mi>K</mi><mi>i</mi></msub></mtd><mtd/></mtr><mtr><mtd><mi>A</mi><mi>l</mi><mi>o</mi><mi>r</mi><mi>s</mi></mtd><mtd><msub><mi>C</mi><mi>i</mi></msub><mo>&#xA0;</mo><mo>+</mo><msub><mi>K</mi><mi>i</mi></msub><mo>=</mo><mo>(</mo><msub><mi>M</mi><mi>i</mi></msub><mo>+</mo><msub><mi>K</mi><mi>i</mi></msub><mo>)</mo><mo>+</mo><msub><mi>K</mi><mi>i</mi></msub></mtd><mtd/></mtr><mtr><mtd><mi>A</mi><mi>l</mi><mi>o</mi><mi>r</mi><mi>s</mi></mtd><mtd><msub><mi>C</mi><mi>i</mi></msub><mo>&#xA0;</mo><mo>+</mo><msub><mi>K</mi><mi>i</mi></msub><mo>=</mo><msub><mi>M</mi><mi>i</mi></msub><mo>+</mo><mo>(</mo><msub><mi>K</mi><mi>i</mi></msub><mo>+</mo><msub><mi>K</mi><mi>i</mi></msub><mo>)</mo></mtd><mtd><mi>p</mi><mi>a</mi><mi>r</mi><mo>&#xA0;</mo><mi>a</mi><mi>s</mi><mi>s</mi><mi>o</mi><mi>c</mi><mi>i</mi><mi>a</mi><mi>t</mi><mi>i</mi><mi>v</mi><mi>i</mi><mi>t</mi><mi>&#xE9;</mi></mtd></mtr><mtr><mtd><mi>A</mi><mi>i</mi><mi>n</mi><mi>s</mi><mi>i</mi></mtd><mtd><msub><mi>C</mi><mi>i</mi></msub><mo>&#xA0;</mo><mo>+</mo><msub><mi>K</mi><mi>i</mi></msub><mo>=</mo><msub><mi>M</mi><mi>i</mi></msub></mtd><mtd/></mtr></mtable></math><br/>
+		<br/>
+		On a donc la clé courante K<sub>i</sub> qui se compense elle-même. L'opération XOR donnant 0x00, ce qui correspond à l'élement neutre de l'opération + dans GF(2<sup>8</sup>).<br/>
+    </p>
+</div>

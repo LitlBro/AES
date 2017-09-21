@@ -1,0 +1,27 @@
+La structure du projet suit celles de l'arborescence de fichier.
+
+	Le principe est le suivant :
+		- Chaque dossier comprend un fichier php du même nom contenant les includes pour gérer le contenu, header, footer nécessaires
+		- Le code html est appelé par ce fichier PHP
+		- toutes sources (CSS/images) sont contenues dans le dossier public/
+
+Le dossier histoire/ :
+	- Contient le code html pour la section histoire
+	
+Le dossier maths/ :
+	- Contient le code html pour la section maths
+	
+le dossier aes/ :
+	- Contient un header/footer spécifique à la partie aes
+	- Ils permettent de gérer la navbar secondaire
+	- Contient les sous dossiers correspondant aux fonctions de l'AES
+	
+le dossier application/ :
+	- Contient le code javascript utilisé pour la partie application
+	- Contient le code html utilisé pour la partie application
+	- Contient le code PHP utilisé pour générer les tableaux pour les fonctions de l'AES
+	
+Ainsi : 
+	modification du contenu d'une section : chercher les fichiers html dans le dossier du même nom
+	modification de la logique du site : chercher les fichiers PHP dans les dossiers du nom de la section
+	modification JavaScript (partie application), voir dossier application/

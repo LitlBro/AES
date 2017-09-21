@@ -1,0 +1,30 @@
+<div class="row row-centered">
+		<div class="col-xs-12">
+			<div class="box">
+				<h2>Explication</h2>
+				<p>
+					Cette partie est là pour vous permettre d'appliquer les fonctions prinicipales de l'AES.<br/>
+					Les données initiales (clé, PlainText) sont générées aléatoirement<br/>
+					Vous pourrez ensuite calculer à la main les résultats de chaque opération.<br/>
+					Pour vérifier vos résultats vous pourrez ensuite cliquer sur la correction de chaque étape.<br/>
+					<br/>
+					Les champs des tableaux ne sont pas bloqués, vous pouvez écrire vos propres valeurs. Attention dans ce cas à ne pas oublier le préfixe '0x'.<br/>
+					(Les données sont générées à chaque rafraichissement de la page, attention à ne pas perdre ce que vous y auriez écrit.)<br/>
+					<br/>
+					Un round est ici représenté :
+				</p>
+				<ul>
+					<li>Extension de la clé (ici, de 128 bits, 1<sup>ère</sup> itération)</li>
+					<li>Substitution (ByteSub)</li>
+					<li>Décalage des lignes (ShiftRow)</li>
+					<li>Opérations sur colonne (MixColumn)</li>
+					<li>Somme avec la RoundKey (AddRoundKey)</li>
+				</ul>
+				<p>
+					Les champs à gauche sont les champs avant opération.<br/>
+					Les champs à droite sont le résultat de la fonction.<br/>
+				</p>
+			</div>
+		</div>
+
+</div>

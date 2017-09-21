@@ -1,0 +1,32 @@
+<div class="box"è
+    <h2>Inversibilité de f()</h2>
+    <p>
+		ByteSub étant bijective, il est possible de construire sa fonction inverse.<br/>
+		pour la fonction f(), elle représente un système de 8 inconnues à 8 équations, il est donc possible de le résoudre.<br/>
+		Cela permet d'obtenir la fonction suivante : <br/>
+		<br/>
+		<math xmlns="http://www.w3.org/1998/Math/MathML"><mfenced><mtable><mtr><mtd><mi>b</mi><msub><mo>'</mo><mn>0</mn></msub></mtd></mtr><mtr><mtd><mi>b</mi><msub><mo>'</mo><mn>1</mn></msub></mtd></mtr><mtr><mtd><mi>b</mi><msub><mo>'</mo><mn>2</mn></msub></mtd></mtr><mtr><mtd><mi>b</mi><msub><mo>'</mo><mn>3</mn></msub></mtd></mtr><mtr><mtd><mi>b</mi><msub><mo>'</mo><mn>4</mn></msub></mtd></mtr><mtr><mtd><mi>b</mi><msub><mo>'</mo><mn>5</mn></msub></mtd></mtr><mtr><mtd><mi>b</mi><msub><mo>'</mo><mn>6</mn></msub></mtd></mtr><mtr><mtd><mi>b</mi><msub><mo>'</mo><mn>7</mn></msub></mtd></mtr></mtable></mfenced><mo>&#x2261;</mo><mfenced><mtable><mtr><mtd><mn>0</mn></mtd><mtd><mn>1</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>1</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>1</mn></mtd><mtd><mn>0</mn></mtd></mtr><mtr><mtd><mn>0</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>1</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>1</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>1</mn></mtd></mtr><mtr><mtd><mn>1</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>1</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>1</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>0</mn></mtd></mtr><mtr><mtd><mn>0</mn></mtd><mtd><mn>1</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>1</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>1</mn></mtd><mtd><mn>0</mn></mtd></mtr><mtr><mtd><mn>0</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>1</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>1</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>1</mn></mtd></mtr><mtr><mtd><mn>1</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>1</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>1</mn></mtd><mtd><mn>0</mn></mtd></mtr><mtr><mtd><mn>0</mn></mtd><mtd><mn>1</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>1</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>1</mn></mtd></mtr><mtr><mtd><mn>1</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>1</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>1</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>0</mn></mtd></mtr></mtable></mfenced><mo>&#xD7;</mo><mfenced><mtable><mtr><mtd><msub><mi>b</mi><mn>0</mn></msub></mtd></mtr><mtr><mtd><msub><mi>b</mi><mn>1</mn></msub></mtd></mtr><mtr><mtd><msub><mi>b</mi><mn>2</mn></msub></mtd></mtr><mtr><mtd><msub><mi>b</mi><mn>3</mn></msub></mtd></mtr><mtr><mtd><msub><mi>b</mi><mn>4</mn></msub></mtd></mtr><mtr><mtd><msub><mi>b</mi><mn>5</mn></msub></mtd></mtr><mtr><mtd><msub><mi>b</mi><mn>6</mn></msub></mtd></mtr><mtr><mtd><msub><mi>b</mi><mn>7</mn></msub></mtd></mtr></mtable></mfenced><mo>+</mo><mfenced><mtable><mtr><mtd><mn>0</mn></mtd></mtr><mtr><mtd><mn>0</mn></mtd></mtr><mtr><mtd><mn>0</mn></mtd></mtr><mtr><mtd><mn>0</mn></mtd></mtr><mtr><mtd><mn>0</mn></mtd></mtr><mtr><mtd><mn>1</mn></mtd></mtr><mtr><mtd><mn>0</mn></mtd></mtr><mtr><mtd><mn>1</mn></mtd></mtr></mtable></mfenced><mo>&#xA0;</mo><mi>m</mi><mi>o</mi><mi>d</mi><mo>&#xA0;</mo><mn>2</mn></math><br/>
+		<br/>
+	</p>
+	<h2>Inversibilité de l'inverse</h2>
+	<p>
+		De plus, comme on peut le voir dans la table des inverses, si a inverse de b alors b inverse de a.<br/>
+		On peut donc réutiliser cette table:<br/>
+		<image src="/tx/public/image/aes_mult_inv.png " class="img-responsive" alt="algorithm"> <br/>
+		Ainsi, il est possible de remonter ByteSub. Tout d'abord en trouvant la fonction inverse f<sup>-1</sup>().<br/>
+		Ensuite, de reprendre l'inverse du résultat, pour retomber sur l'élement initial.<br/>
+	</p>
+	<h2>Simplification du déchiffrement de ByteSub</h2>
+	<p>
+		De même que pour ByteSub, il est possible de précalculer le résultat pour chaque élément : <br/>
+		<br/>		
+		<image src="/tx/public/image/ISBox_aes.jpg " class="img-responsive" alt="algorithm"> <br/>
+		<br/>
+		Si vous voulez, vous pouvez vérifier :<br/>
+    </p>
+    <ul>
+		<li>qu'aucun élément n'est sa propre image</li>
+		<li>qu'aucun élément n'est symétrique</li>
+		<li>que la fonction est bien bijective</li>
+    </ul>
+</div>

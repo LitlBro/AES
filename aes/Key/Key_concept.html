@@ -1,0 +1,27 @@
+<div class="box">
+    <h2>Principe de "Key Schedule"</h2>
+    <p>
+		Les clés de l'AES font 128,192 ou 256 bits. Chacune correspondant à un nombre de répétition du chiffrement.<br/>
+		Or pour éviter certaines attaques issues de la cryptanalyse, ces clés sont étendues.<br/>
+		Cela veut simplement signifier que d'autres clés sont créées à partir de la clé initiale.<br/>
+		Ainsi le Key schedule va permettre de créer une clé différente par tour de chiffrement, chacune de ces clés sous-clé faisant 128 bits.<br/>
+		On peut donc se demander deux choses : <br/>
+    </p>
+    <ul>
+		<li>
+			Pourquoi n'utilise t-on pas alors que des clés de 128 bits ? (Pourquoi en utiliser 256 si c'est pour retomber à 128 ?)
+		</li>
+		
+		<li>
+			Pourquoi n'utilise t'on pas une clé qui serait de la taille du bloc de donnée multipliée par le nombre de tours ?
+		</li>
+    </ul>
+    <p>
+		Les clés de 128 bits sont plus faibles que celles de 192, qui sont elles-même plus faibles que celle de 256 bits.<br/>
+		Cela est justement dû au Key schedule, il permet de contrer certaines attaques, et sa construction implique qu'une clé de plus grande taille est plus sûre.<br/>
+		Ensuite, une seule grande clé serait aussi dangereux. <br/>
+		Tout d'abord à retenir. Il y aurait le risque que les gens choississent une clé facile à retenir, et donc plus facile à trouver.<br/>
+		Et finalement L'utilisation d'une seule grande clé est en fait ce que fait l'AES via le Key Schedule.<br/>
+		Cela permet d'avoir une clé complexe lors du chiffrement, mais suffisamment courte initialement pour être retenue.<br/>
+    </p>
+</div>

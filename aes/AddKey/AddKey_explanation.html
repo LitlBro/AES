@@ -1,0 +1,11 @@
+<div class="box">
+    <h2>Détail de l'algorithme</h2>
+    <p>
+		AddKey prend les 128 bits de la clé après son extension, et les somment directement avec le bloc de données.<br/>
+		Ceci est réalisé par une opération XOR bit à bit.<br/>
+		Exemple sur 8 bits (un mot du bloc de donnée) : <br/>
+		RoundKey = 11101100 et Mot = 10011011 <br/>
+		Ainsi la somme bit à bit (modulo 2 car les éléments sont issus de GF(2)) donne : <br/>
+		<math xmlns="http://www.w3.org/1998/Math/MathML"><mfrac><mtable><mtr><mtd><mn>11101100</mn></mtd></mtr><mtr><mtd><mo>+</mo></mtd></mtr><mtr><mtd><mn>10011011</mn></mtd></mtr></mtable><mn>01110111</mn></mfrac></math><br/>
+    </p>
+</div>

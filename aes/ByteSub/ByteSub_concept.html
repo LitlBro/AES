@@ -1,0 +1,23 @@
+<div class="box">
+    <h2>Principe de ByteSub</h2>
+    
+    <p>
+		ByteSub est une application avec les propriétés suivantes : <br>
+    </p>
+    <ul>
+		<li>Bijective :<br/>
+			<math xmlns="http://www.w3.org/1998/Math/MathML"><mtable><mtr><mtd><mo>&#x2200;</mo><mi>y</mi><mo>&#x2208;</mo><mi>F</mi><mo>,</mo></mtd><mtd><mo>&#x2203;</mo><mo>!</mo><mi>x</mi><mo>&#x2208;</mo><mi>E</mi><mo>;</mo></mtd><mtd><mi>f</mi><mfenced><mtable><mtr><mtd><mi>x</mi></mtd></mtr></mtable></mfenced><mo>=</mo><mi>y</mi></mtd></mtr></mtable></math><br/>
+		</li>
+		<li>Non linéaire :<br/>
+			<math xmlns="http://www.w3.org/1998/Math/MathML"><mtable><mtr><mtd><mi>B</mi><mi>y</mi><mi>t</mi><mi>e</mi><mi>S</mi><mi>u</mi><mi>b</mi><mo>(</mo><mi>A</mi><mo>)</mo><mo>+</mo><mi>B</mi><mi>y</mi><mi>t</mi><mi>e</mi><mi>S</mi><mi>u</mi><mi>b</mi><mo>(</mo><mi>B</mi><mo>)</mo></mtd><mtd><mo>&#x2260;</mo></mtd><mtd><mi>B</mi><mi>y</mi><mi>t</mi><mi>e</mi><mi>S</mi><mi>u</mi><mi>b</mi><mo>(</mo><mi>A</mi><mo>+</mo><mi>B</mi><mo>)</mo></mtd></mtr></mtable></math><br/>
+		</li>
+    </ul>
+    <p>
+		Dans notre cas, les ensembles E et F sont les mêmes. il s'agit de GF(2<sup>8</sup>).<br/>
+		La bijectivité permet de s'assurer que lors du chiffrement tout les éléments aient une image différente.<br/>
+		Ainsi lors du déchiffrement, il n'y aura pas d'incohérence, une fonction bijective étant inversible, tel que son inverse est aussi une fonction bijective.<br/>
+		<math xmlns="http://www.w3.org/1998/Math/MathML"><mtable><mtr><mtd><mo>&#x2200;</mo><mi>x</mi><mo>&#x2208;</mo><mi>E</mi><mo>,</mo></mtd><mtd><mo>&#x2203;</mo><mo>!</mo><mi>y</mi><mo>&#x2208;</mo><mi>F</mi><mo>;</mo></mtd><mtd><msup><mi>f</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup><mfenced><mtable><mtr><mtd><mi>y</mi></mtd></mtr></mtable></mfenced><mo>=</mo><mi>x</mi></mtd></mtr></mtable></math><br/>
+		<br/>
+		La non linéarité  permet de se protéger de certaines attaques (voir sources).
+    </p>
+    </div>

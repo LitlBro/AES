@@ -1,0 +1,44 @@
+<div class="box">
+    <h2>IMPORTANT : Héxadécimal et binaire</h2>
+    <div>
+		<p>
+			Dans les prochaines pages, vous verrez que les octets dans le bloc de donnée sont représentés en hexadécimal.<br/>
+			Cela ne correspond PAS à l'ensemble des entiers ! Il serait faux de convertir en base 10.<br/>
+			Un élement du bloc de donnée (octet) peut être converti en un polynôme appartenant a GF(2<sup>8</sup>).<br/>
+			Le passage à l'héxadécimal permet uniquement de contracter l'écriture(passer de 8 à 2 caractères).<br/>
+			L'héxadécimal est une écriture en base 16, ainsi l'élément le plus à droite est multiplié par 16<sup>0</sup>.<br/>
+			Le second par 16, ensuite par 16<sup>2</sup> et ainsi de suite.<br/>
+		</p>
+		<p>
+			Pour passer du binaire à l'héxadécimal : <br/>
+			On sépare l'octet entre ses 4 bits de poids faible (4 plus à droite) et ses 4 bits de poids forts (4 plus à gauche).<br/>
+			On somme ensuite, comme si il s'agissait de deux chiffres représentés en binaire.<br/>
+			Tout peux se faire selon le schéma suivant : <br/>
+			<math xmlns="http://www.w3.org/1998/Math/MathML"><mtable><mtr><mtd><munder><munder><mrow><msub><mi>b</mi><mn>7</mn></msub><mo>&#xA0;</mo><msub><mi>b</mi><mn>6</mn></msub><mo>&#xA0;</mo><msub><mi>b</mi><mn>5</mn></msub><mo>&#xA0;</mo><msub><mi>b</mi><mn>4</mn></msub></mrow><mo>&#x23DF;</mo></munder><msub><mi>h</mi><mn>1</mn></msub></munder></mtd><mtd><munder><munder><mrow><msub><mi>b</mi><mn>3</mn></msub><mo>&#xA0;</mo><msub><mi>b</mi><mn>2</mn></msub><mo>&#xA0;</mo><msub><mi>b</mi><mn>1</mn></msub><mo>&#xA0;</mo><msub><mi>b</mi><mn>0</mn></msub><mo>&#xA0;</mo></mrow><mo>&#x23DF;</mo></munder><msub><mi>h</mi><mn>2</mn></msub></munder></mtd></mtr></mtable><mspace linebreak="newline"/></math><br/>
+			Avec : <br/>
+			<math xmlns="http://www.w3.org/1998/Math/MathML"><mtable><mtr><mtd><msub><mi>h</mi><mn>1</mn></msub><mo>=</mo><msub><mi>b</mi><mn>7</mn></msub><mo>&#xB7;</mo><msup><mn>2</mn><mn>3</mn></msup><mo>+</mo><msub><mi>b</mi><mn>6</mn></msub><mo>&#xB7;</mo><msup><mn>2</mn><mn>2</mn></msup><mo>+</mo><msub><mi>b</mi><mn>5</mn></msub><mo>&#xB7;</mo><msup><mn>2</mn><mn>1</mn></msup><mo>+</mo><msub><mi>b</mi><mn>4</mn></msub><mo>&#xB7;</mo><msup><mn>2</mn><mn>0</mn></msup></mtd></mtr><mtr><mtd><msub><mi>h</mi><mn>2</mn></msub><mo>=</mo><msub><mi>b</mi><mn>3</mn></msub><mo>&#xB7;</mo><msup><mn>2</mn><mn>3</mn></msup><mo>+</mo><msub><mi>b</mi><mn>2</mn></msub><mo>&#xB7;</mo><msup><mn>2</mn><mn>2</mn></msup><mo>+</mo><msub><mi>b</mi><mn>1</mn></msub><mo>&#xB7;</mo><msup><mn>2</mn><mn>1</mn></msup><mo>+</mo><msub><mi>b</mi><mn>0</mn></msub><mo>&#xB7;</mo><msup><mn>2</mn><mn>0</mn></msup></mtd></mtr></mtable></math><br/>
+			<br/>
+			Par construction, un chiffre en héxadécimal peut prendre les valeurs suivantes : <br/>
+			{0,1,2,3,4,5,6,7,8,9,A,B,C,D,E,F} avec A, B, ..., F correspondant à 10, 11, ...,15.<br/>
+
+		</p>
+		<p>
+			ex : <br/>
+			Un élément du bloc de donnée contient "10011011" (équivalent au polynôme X<sup>7</sup> + X<sup>4</sup> + X<sup>4</sup> + X<sup>1</sup> + X<sup>0</sup>)<br/>
+			Pour simplifier l'écriture, on passe à l'héxacédimal : <br/>
+			
+			10011011 est séparé en 1001 et 1011.<br/>
+			Grâce à la formule précédente, on a :
+		<p/>
+		<ul>
+			<li>h1 = 8+0+0+1 = 9</li>
+			<li>h2 = 8+0+2+1 = 11</li>
+		</ul>
+		<p>
+			<br/>
+			Or en héxadécimal, 11 correspond à B.<br/> 
+			De plus, dans de nombreux langages informatique, on ajoute un préfixe (par exemple 0x en Javascript) pour le différencier de la base 10.<br/>
+			On a donc au final : <math xmlns="http://www.w3.org/1998/Math/MathML"><mtable><mtr><mtd><msub><mn>10011011</mn><mn>2</mn></msub></mtd><mtd><mo>=</mo></mtd><mtd><mn>0</mn><mi>x</mi><mn>9</mn><mi>B</mi></mtd></mtr></mtable></math><br/>
+		</p>
+	</div>
+</div>

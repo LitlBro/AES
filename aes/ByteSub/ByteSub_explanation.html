@@ -1,0 +1,83 @@
+
+<div class="box">
+    <h2>Fonctionnement de ByteSub</h2>
+    <p>
+		Le but de ByteSub est d'effectuer une substitution octet (byte) par octet. Cela s'effectue en deux étapes distinctes.<br/>
+		Dans cette partie, on va reprendre A = <math xmlns="http://www.w3.org/1998/Math/MathML"><mtable><mtr><mtd><msub><mn>10011011</mn><mn>2</mn></msub></mtd><mtd><mo>=</mo></mtd><mtd><mn>0</mn><mi>x</mi><mn>9</mn><mi>B</mi></mtd></mtr></mtable></math>
+		, dans le but de créer un exemple.<br/>
+	</p>
+	<h2>ByteSub : passage à l'inverse</h2>
+	<p>
+		Tout d'abord on remplace la valeur 
+		<math xmlns="http://www.w3.org/1998/Math/MathML"><mi>A</mi><mo>=</mo><mo>(</mo><msub><mi>a</mi><mn>7</mn></msub><mo>&#xA0;</mo><msub><mi>a</mi><mn>6</mn></msub><mo>&#xA0;</mo><msub><mi>a</mi><mn>5</mn></msub><mo>&#xA0;</mo><msub><mi>a</mi><mn>4</mn></msub><mo>&#xA0;</mo><msub><mi>a</mi><mn>3</mn></msub><mo>&#xA0;</mo><msub><mi>a</mi><mn>2</mn></msub><mo>&#xA0;</mo><msub><mi>a</mi><mn>1</mn></msub><mo>&#xA0;</mo><msub><mi>a</mi><mn>0</mn></msub><mo>)</mo></math>
+		(un mot du bloc de donnée) par son inverse dans GF(2<sup>8</sup>).<br/>
+		Étant donné que nous sommes dans un corps, il faut préciser quelle opération nous utilisons.<br/>
+		Dans ce cas, il s'agit de l'inverse dans le groupe multiplicatif, d'élément neutre 0x01.<br/>
+		Dans ce groupe, 0x00 n'ayant pas d'inverse, il est son propre inverse par convention.<br/>
+		Cela peut se faire via une table : <br/>
+		<image src="/tx/public/image/aes_mult_inv.png " class="img-responsive" alt="algorithm"> <br/>
+		(Pour passer du binaire a l'héxadécimal, voir l'onglet sur l'algorithme AES).<br/>
+		Celle-ci peut directement être codée "en dur" dans un programme, elle ne varie jamais.<br/>
+		On a donc :<br/>
+		<math xmlns="http://www.w3.org/1998/Math/MathML"><mtable><mtr><mtd><mi>A</mi><mo>=</mo><mo>(</mo><msub><mi>a</mi><mn>7</mn></msub><mo>&#xA0;</mo><msub><mi>a</mi><mn>6</mn></msub><mo>&#xA0;</mo><msub><mi>a</mi><mn>5</mn></msub><mo>&#xA0;</mo><msub><mi>a</mi><mn>4</mn></msub><mo>&#xA0;</mo><msub><mi>a</mi><mn>3</mn></msub><mo>&#xA0;</mo><msub><mi>a</mi><mn>2</mn></msub><mo>&#xA0;</mo><msub><mi>a</mi><mn>1</mn></msub><mo>&#xA0;</mo><msub><mi>a</mi><mn>0</mn></msub><mo>)</mo></mtd></mtr><mtr><mtd><mo>&#xA0;</mo><mi>B</mi><mo>'</mo><mo>=</mo><mo>(</mo><mi>b</mi><msub><mo>'</mo><mn>7</mn></msub><mi>b</mi><msub><mo>'</mo><mn>6</mn></msub><mi>b</mi><msub><mo>'</mo><mn>5</mn></msub><mi>b</mi><msub><mo>'</mo><mn>4</mn></msub><mi>b</mi><msub><mo>'</mo><mn>3</mn></msub><mi>b</mi><msub><mo>'</mo><mn>2</mn></msub><mi>b</mi><msub><mo>'</mo><mn>1</mn></msub><mi>b</mi><msub><mo>'</mo><mn>0</mn></msub><mo>)</mo><mo>=</mo><msup><mi>A</mi><mrow><mo>-</mo><mn>1</mn></mrow></msup></mtd></mtr></mtable></math><br/>
+		<br/>
+		Exemple : <br/>
+		Si l'on reprend l'inverse de A, on a donc : <br/>
+		A<sup>-1</sup> = <math xmlns="http://www.w3.org/1998/Math/MathML"><mtable><mtr><mtd><mi>B</mi><mo>'</mo><mo>=</mo><msub><mn>10001000</mn><mn>2</mn></msub></mtd><mtd><mo>=</mo></mtd><mtd><mn>0</mn><mi>x</mi><mn>88</mn></mtd></mtr></mtable></math><br/>
+		
+    </p>
+	
+	<h2>ByteSub : fonction non linéaire</h2>
+	
+	<p>
+		Dans cette seconde étape, on modifie la valeur en la multipiant par un vecteur puis en sommant un terme constant, le tout modulo 2.<br/>
+		Le fait que cette fonction soit bijective permettra plus tard le déchiffrement de cette étape.<br/><br/>
+		Ainsi : <br/>
+		<math xmlns="http://www.w3.org/1998/Math/MathML"><mtable><mtr><mtd><mi>S</mi><mi>o</mi><mi>i</mi><mi>t</mi><mo>&#xA0;</mo><mi>B</mi></mtd><mtd><mo>=</mo></mtd><mtd><mi>f</mi><mo>(</mo><mi>B</mi><mo>'</mo><mo>)</mo><mo>;</mo></mtd></mtr></mtable></math><br/>		
+		Avec la fonction f() correspondant à :<br/>
+		<math xmlns="http://www.w3.org/1998/Math/MathML"><mfenced><mtable><mtr><mtd><mi>b</mi><mn>0</mn></mtd></mtr><mtr><mtd><mi>b</mi><mn>1</mn></mtd></mtr><mtr><mtd><mi>b</mi><mn>2</mn></mtd></mtr><mtr><mtd><mi>b</mi><mn>3</mn></mtd></mtr>
+		<mtr><mtd><mi>b</mi><mn>4</mn></mtd></mtr><mtr><mtd><mi>b</mi><mn>5</mn></mtd></mtr><mtr><mtd><mi>b</mi><mn>6</mn></mtd></mtr><mtr><mtd><mi>b</mi><mn>7</mn></mtd>
+		</mtr></mtable></mfenced><mo>&#x2261;</mo><mfenced><mtable><mtr><mtd><mn>1</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>1</mn></mtd><mtd><mn>1</mn></mtd>
+        <mtd><mn>1</mn></mtd><mtd><mn>1</mn></mtd></mtr><mtr><mtd><mn>1</mn></mtd><mtd><mn>1</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>1</mn></mtd>
+        <mtd><mn>1</mn></mtd><mtd><mn>1</mn></mtd></mtr><mtr><mtd><mn>1</mn></mtd><mtd><mn>1</mn></mtd><mtd><mn>1</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>1</mn></mtd><mtd><mn>1</mn></mtd>
+        </mtr><mtr><mtd><mn>1</mn></mtd><mtd><mn>1</mn></mtd><mtd><mn>1</mn></mtd><mtd><mn>1</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>1</mn></mtd></mtr><mtr><mtd><mn>1</mn></mtd>
+        <mtd><mn>1</mn></mtd><mtd><mn>1</mn></mtd><mtd><mn>1</mn></mtd><mtd><mn>1</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>0</mn></mtd></mtr><mtr><mtd><mn>0</mn></mtd><mtd><mn>1</mn></mtd>
+        <mtd><mn>1</mn></mtd><mtd><mn>1</mn></mtd><mtd><mn>1</mn></mtd><mtd><mn>1</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>0</mn></mtd></mtr><mtr><mtd><mn>0</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>1</mn></mtd>
+        <mtd><mn>1</mn></mtd><mtd><mn>1</mn></mtd><mtd><mn>1</mn></mtd><mtd><mn>1</mn></mtd><mtd><mn>0</mn></mtd></mtr><mtr><mtd><mn>0</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>1</mn></mtd>
+		<mtd><mn>1</mn></mtd><mtd><mn>1</mn></mtd><mtd><mn>1</mn></mtd><mtd><mn>1</mn></mtd></mtr></mtable></mfenced><mo>&#xD7;</mo><mfenced><mtable><mtr><mtd><mi>b</mi><mo>'</mo><mn>0</mn></mtd></mtr>
+		<mtr><mtd><mi>b</mi><mo>'</mo><mn>1</mn></mtd></mtr><mtr><mtd><mi>b</mi><mo>'</mo><mn>2</mn></mtd></mtr><mtr><mtd><mi>b</mi><mo>'</mo><mn>3</mn></mtd></mtr><mtr><mtd><mi>b</mi><mo>'</mo><mn>4</mn></mtd>
+		</mtr><mtr><mtd><mi>b</mi><mo>'</mo><mn>5</mn></mtd></mtr><mtr><mtd><mi>b</mi><mo>'</mo><mn>6</mn></mtd></mtr><mtr><mtd><mi>b</mi><mo>'</mo><mn>7</mn></mtd></mtr></mtable></mfenced><mo>+</mo>
+		<mfenced><mtable><mtr><mtd><mn>1</mn></mtd></mtr><mtr><mtd><mn>1</mn></mtd></mtr><mtr><mtd><mn>0</mn></mtd></mtr><mtr><mtd><mn>0</mn></mtd></mtr><mtr><mtd><mn>0</mn></mtd>
+		</mtr><mtr><mtd><mn>1</mn></mtd></mtr><mtr><mtd><mn>1</mn></mtd></mtr><mtr><mtd><mn>0</mn></mtd></mtr></mtable></mfenced><mo>&#xA0;</mo><mo>&#xA0;</mo><mi>m</mi><mi>o</mi><mi>d</mi><mo>&#xA0;</mo><mn>2</mn></math><br/><br/>
+		
+		Exemple :<br/>
+		On reprend <math xmlns="http://www.w3.org/1998/Math/MathML"><mtable><mtr><mtd><mi>B</mi><mo>'</mo><mo>=</mo><msub><mn>10001000</mn><mn>2</mn></msub></mtd><mtd><mo>=</mo></mtd><mtd><mn>0</mn><mi>x</mi><mn>88</mn></mtd></mtr></mtable></math><br/>
+		Après calcul, on va trouver <math xmlns="http://www.w3.org/1998/Math/MathML"><mtable><mtr><mtd><mi>f</mi><mo>(</mo><mi>B</mi><mo>'</mo><mo>)</mo><mo>=</mo><mi>B</mi><mo>=</mo><msub><mn>00010100</mn><mn>2</mn></msub></mtd><mtd><mo>=</mo></mtd><mtd><mn>0</mn><mi>x</mi><mn>14</mn></mtd></mtr></mtable></math><br/>
+		<br/>
+	</p>
+	<h2>ByeSub : simplification</h2>
+	<p>
+		Il est possible de simplifier cette étape. En effet, cette transformation f() est une bijection.<br/>
+		Chaque élément de GF(2<sup>8</sup>) possède une image unique et un antécédent unique.
+		De plus, l'inverse d'un élément est unique.<br/>
+		En effet : <br/>
+		<math xmlns="http://www.w3.org/1998/Math/MathML"><mtable columnalign="left left left"><mtr><mtd><mi>S</mi><mi>o</mi><mi>i</mi><mi>t</mi><mo>&#xA0;</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>c</mi><mo>,</mo><mi>e</mi><mo>&#x2208;</mo><mi>G</mi><mi>F</mi><mo>(</mo><msup><mn>2</mn><mn>8</mn></msup><mo>)</mo><mo>;</mo></mtd><mtd><mi>b</mi><mo>,</mo><mi>c</mi><mo>&#xA0;</mo><mi>i</mi><mi>n</mi><mi>v</mi><mi>e</mi><mi>r</mi><mi>s</mi><mi>e</mi><mo>&#xA0;</mo><mi>d</mi><mi>e</mi><mo>&#xA0;</mo><mi>a</mi></mtd><mtd><mi>e</mi><mi>t</mi><mo>&#xA0;</mo><mi>e</mi><mo>&#xA0;</mo><mi>&#xE9;</mi><mi>l</mi><mi>&#xE9;</mi><mi>m</mi><mi>e</mi><mi>n</mi><mi>t</mi><mo>&#xA0;</mo><mi>n</mi><mi>e</mi><mi>u</mi><mi>t</mi><mi>r</mi><mi>e</mi></mtd></mtr><mtr><mtd><mi>A</mi><mi>l</mi><mi>o</mi><mi>r</mi><mi>s</mi></mtd><mtd><mi>a</mi><mo>*</mo><mi>b</mi><mo>=</mo><mi>a</mi><mo>*</mo><mi>c</mi><mo>=</mo><mi>e</mi></mtd><mtd/></mtr><mtr><mtd><mi>A</mi><mi>i</mi><mi>n</mi><mi>s</mi><mi>i</mi></mtd><mtd><mo>(</mo><mi>b</mi><mo>*</mo><mi>a</mi><mo>)</mo><mo>*</mo><mi>b</mi><mo>=</mo><mo>(</mo><mi>b</mi><mo>*</mo><mi>a</mi><mo>)</mo><mo>*</mo><mi>c</mi></mtd><mtd><mi>c</mi><mi>a</mi><mi>r</mi><mo>&#xA0;</mo><mo>*</mo><mo>&#xA0;</mo><mi>a</mi><mi>s</mi><mi>s</mi><mi>o</mi><mi>c</mi><mi>i</mi><mi>a</mi><mi>t</mi><mi>i</mi><mi>v</mi><mi>e</mi></mtd></mtr><mtr><mtd><mi>A</mi><mi>i</mi><mi>n</mi><mi>s</mi><mi>i</mi></mtd><mtd><mi>e</mi><mo>*</mo><mi>b</mi><mo>=</mo><mi>e</mi><mo>*</mo><mi>c</mi></mtd><mtd><mi>c</mi><mi>a</mi><mi>r</mi><mo>&#xA0;</mo><mi>b</mi><mo>&#xA0;</mo><mi>i</mi><mi>n</mi><mi>v</mi><mi>e</mi><mi>r</mi><mi>s</mi><mi>e</mi><mo>&#xA0;</mo><mi>d</mi><mi>e</mi><mo>&#xA0;</mo><mi>a</mi></mtd></mtr><mtr><mtd><mi>D</mi><mi>o</mi><mi>n</mi><mi>c</mi></mtd><mtd><mi>b</mi><mo>=</mo><mi>c</mi></mtd><mtd><mi>c</mi><mi>a</mi><mi>r</mi><mo>&#xA0;</mo><mi>e</mi><mo>&#xA0;</mo><mi>n</mi><mi>e</mi><mi>u</mi><mi>t</mi><mi>r</mi><mi>e</mi></mtd></mtr></mtable></math><br/>
+		L'inverse est donc unique pour chaque élément, pour l'opération *.<br/>
+		<br/>
+		
+		Chaque élément de GF(2<sup>8</sup>) a donc un inverse unique et une image unique par f().<br/>
+		L'ensemble GF est finis, il est donc possible de calculer ByteSub pour chacun de ses éléments.<br/>
+		Cela donne la table suivante (ici en notation hexadécimale) : <br/>
+		<br/>
+		<image src="/tx/public/image/SBox_aes.jpg " class="img-responsive" alt="algorithm"> <br/>
+		
+		On peut voir qu'il n'y a aucune symétrie ou de point spécifique.<br/>
+		<br/>
+		 
+		 Exemple :<br/>
+		 SI l'on reprend A = <math xmlns="http://www.w3.org/1998/Math/MathML"><mtable><mtr><mtd><msub><mn>10011011</mn><mn>2</mn></msub></mtd><mtd><mo>=</mo></mtd><mtd><mn>0</mn><mi>x</mi><mn>9</mn><mi>B</mi></mtd></mtr></mtable></math><br/>
+		 On peut directement faire la correspondance (inverse et passage par f()).<br/>
+		 Cela donne bien <math xmlns="http://www.w3.org/1998/Math/MathML"><mtable><mtr><mtd><mi>B</mi><mo>=</mo><msub><mn>00010100</mn><mn>2</mn></msub></mtd><mtd><mo>=</mo></mtd><mtd><mn>0</mn><mi>x</mi><mn>14</mn></mtd></mtr></mtable></math><br/>
+		
+    </p>
+</div>

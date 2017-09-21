@@ -1,0 +1,53 @@
+ /* Taille normale des titres sur un ordinateur */
+ body {
+ font-size: 2.5em;
+ }
+ /* Si on utilise un petit écran (que ce soit avec un ordinateur dans une petite fenêtre ou avec un smartphone), les titres sont réduits */
+ @media only screen and (max-width: 320px) {
+ body {
+ font-size: 1em;
+ }
+ } 
+/* Remove the navbar's default margin-bottom and rounded borders */
+     .navbar {
+       margin-bottom: 0;
+       border-radius: 0;
+     }
+
+     /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+     .row.content {height: 900px;}
+
+     /* Set grey background color and 100% height */
+     .sidenav {
+       padding-top: 20px;
+       background-color: #f1f1f1;
+       height: 100%;
+     }
+
+     /* Set black background color, white text and some padding */
+     footer {
+       color: #ffffff;
+       bottom: 0;
+       display: inline-block;
+       position: fixed;
+       background-color: #34475E;
+       width: 100%;
+     }
+
+     /* On small screens, set height to 'auto' for sidenav and grid */
+     @media screen and (max-width: 767px) {
+       .sidenav {
+         height: 100%;
+         padding: 15px;
+       }
+       .row.content {height:auto;}
+     }
+
+
+table {
+ 
+   border-radius: 5px;
+   width: 25%;
+   margin: 0px auto;
+   float: none;
+}

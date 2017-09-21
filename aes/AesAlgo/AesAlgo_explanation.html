@@ -1,0 +1,22 @@
+<div class="box">
+    <h2>AES : principe de l'algorithme</h2>
+	<p>
+	L'AES chiffre un bloc d'entrée en un bloc de sortie. Le bloc de donnée se présente sous la forme suivante :<br/>
+	<math xmlns="http://www.w3.org/1998/Math/MathML"><mi>A</mi><mo>=</mo><mfenced><mtable><mtr><mtd><mi>A</mi><mn>1</mn></mtd><mtd><mi>A</mi><mn>2</mn></mtd><mtd><mi>A</mi><mn>3</mn></mtd><mtd><mi>A</mi><mn>4</mn></mtd></mtr><mtr><mtd><mi>A</mi><mn>5</mn></mtd><mtd><mi>A</mi><mn>6</mn></mtd><mtd><mi>A</mi><mn>7</mn></mtd><mtd><mi>A</mi><mn>8</mn></mtd></mtr><mtr><mtd><mi>A</mi><mn>9</mn></mtd><mtd><mi>A</mi><mn>10</mn></mtd><mtd><mi>A</mi><mn>11</mn></mtd><mtd><mi>A</mi><mn>12</mn></mtd></mtr><mtr><mtd><mi>A</mi><mn>13</mn></mtd><mtd><mi>A</mi><mn>14</mn></mtd><mtd><mi>A</mi><mn>15</mn></mtd><mtd><mi>A</mi><mn>16</mn></mtd></mtr></mtable></mfenced></math><br/>
+	Chacun des éléments du bloc A est un octet, et il y en a 16 pour un bloc, soit 128 bits au total.<br/>
+	<br/>
+	L'input (données entrées dans l'algorithme) est ce que l'on appelle le Plain Text, le texte non chiffré.<br/>
+	L'output (données en sortie de l'algorithme) est ce que l'on appelle le Cypher Text, le texte chiffré.<br/><br/>
+	
+	Pour chiffrer, il applique sur le Plain Text 4 fonctions distinctes dans un ordre précis et de façon répétitive, chacunes étant réversibles. <br>
+	La clé de chiffrement est utilisée pour chiffrer mais aussi pour déterminer le nombre de répétition.<br/>
+	Les clés peuvent faire 128, 192 ou 256 bit, correspondant respectivement à 10, 12 et 14 répétitions.<br/>
+	Avant chaque répétition, on créera ce que l'on appelle la RoundKey, qui est une clé dérivée de la clé initiale.<br/>
+	
+	<br/>
+	Le schéma général de l'AES est le suivant : <br/>
+		<image src="/tx/public/image/aes.png " class="img-responsive" alt="algorithm"> <br/>
+
+	Chaque fonction sera explicitée dans sa section propre.<br/>
+	</p>
+</div>
